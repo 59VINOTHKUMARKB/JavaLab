@@ -1,0 +1,252 @@
+import java.util.*;
+public class Main {
+    public static void main(String[] args) {
+        // TODO code application logic here
+        Scanner s=new Scanner(System.in);
+        int n = 0;
+        student[] obj=new student[10];
+        staff[] obj2=new staff[10];
+        int choice=0;
+        System.out.print("\t\t\tPRINTING STUDENT AND STAFF DETAILS USING\n\t\t\t\tUSING INHERITANCE CONCEPT");
+        System.out.println("\n1.Student\n2.Staff");
+        System.out.println("Enter The Person:");
+        choice=s.nextInt();
+        switch(choice)
+        {
+            case 1:
+            {
+                System.out.println("Enter the Student Details..");
+                System.out.println("Enter The No Of Students:");
+                n=s.nextInt();
+               
+                for(int i=1;i<=n;i++)
+                {
+                    obj[i]=new student();
+                    System.out.println("\nEnter the Student Details for "+i);
+                    obj[i].getname();
+                    obj[i].getaddress();
+                    obj[i].getYear();
+                    obj[i].getfee();
+                    obj[i].getprogram();
+                    System.out.println("If you want to Change any Values..?(yes:1 or No:2):");
+                    int ch=s.nextInt();
+                    if(ch==1)
+                    {
+                        System.out.println("To Change\n1.Name\n2.Address\n3.Year\n4.Fees\n5.Program");
+                        System.out.print("Enter Choice:");
+                        int cho=s.nextInt();
+                        switch(cho)
+                        {
+                        case 1:
+                        {
+                            System.out.print("Enter Updated Name:");
+                            String set_name=s.next();
+                            obj[i].setname(set_name);
+                            break;
+                        }
+                        case 2:
+                        {
+                            System.out.print("Enter Updated Address:");
+                            String set_add=s.next();
+                            obj[i].setaddress(set_add);
+                            break;
+                        }
+                        case 3:
+                        {
+                            System.out.print("Enter Updated Year:");
+                            int set_year=s.nextInt();
+                            obj[i].setyear(set_year);
+                            break;
+                        }
+                        case 4:
+                        {
+                            System.out.print("Enter Updated fee:");
+                            double set_fee=s.nextDouble();
+                            obj[i].setfee(set_fee);
+                            break;
+                        }
+                        case 5:
+                        {
+                            System.out.print("Enter Updated Program:");
+                            String set_program=s.next();
+                            obj[i].setprogram(set_program);
+                            break;
+                        }
+                        default:
+                        System.out.print("Invalid Choice!");
+                    }
+                }
+                obj[i].toString();
+                String details= obj[i].toString();
+                System.out.println(details);
+            }
+            break;
+            }
+            case 2:
+            {
+                System.out.println("Enter the Staff Details:");
+                System.out.println("Enter The No Of Staffs:");
+                n=s.nextInt();
+                for(int i=1;i<=n;i++)
+                {
+                    obj2[i]=new staff();
+                    System.out.println("\nEnter the Staff Details for "+i);
+                    obj2[i].getname();
+                    obj2[i].getaddress();
+                    obj2[i].getschool();
+                    obj2[i].getpay();
+                    
+                    System.out.println("If you want to Change any Values..?(yes:1 or No:2):");
+                    int ch=s.nextInt();
+                    if(ch==1)
+                    {
+                        System.out.println("To Change\n1.Name\n2.Address\n3.School\n4.Pay Value\n");
+                        System.out.print("Enter Choice:");
+                        int cho=s.nextInt();
+                        switch(cho)
+                        {
+                        case 1:
+                        {
+                            System.out.print("Enter Updated Name:");
+                            String set_name=s.next();
+                            obj2[i].setname(set_name);
+                            break;
+                        }
+                        case 2:
+                        {
+                            System.out.print("Enter Updated Address:");
+                            String set_add=s.next();
+                            obj2[i].setaddress(set_add);
+                            break;
+                        }
+                        case 3:
+                        {
+                            System.out.print("Enter Updated School:");
+                            String set_sch=s.next();
+                            obj2[i].setschool(set_sch);
+                            break;
+                        }
+                        case 4:
+                        {
+                            System.out.print("Enter Updated Pay:");
+                            double set_pay=s.nextDouble();
+                            obj2[i].setpay(set_pay);
+                            break;
+                        }
+                        default:
+                        System.out.print("Invalid Choice!");
+                    }
+                    obj2[i].toString();
+                    String details= obj2[i].toString();
+                    System.out.println(details);
+                }
+            }
+        break;   
+        }
+        default:
+        System.out.println("Invalid");
+    }
+    }
+}
+class person{
+    String name,set_name;
+    String address,set_add;
+    Scanner scan=new Scanner(System.in);
+
+    String getname()
+    {
+         System.out.println("Enter the Name:");
+         name=scan.next();
+         return name;
+    }
+    String setname(String set_name)
+    {
+        name=set_name;
+        return name;
+    }
+    String getaddress()
+    {
+         System.out.println("Enter the Address:");
+         address=scan.next();
+         return address;
+    }
+    void setaddress(String set_add)
+    {
+        address=set_add;
+    }
+     
+    public String toString()
+    {
+        return ("Name:"+name+" Address:"+address);
+    }
+}
+class student extends person
+{   String program,set_program;
+    int year,set_year;
+    double fee,set_fee;
+    String getprogram()
+    {
+        System.out.println("Enter the Program:");
+        program=scan.next();
+        return program;
+    }
+    void setprogram(String set_program)
+    {
+        program=set_program;
+    }
+    int getYear()
+    {
+        System.out.println("Enter the Year:");
+        year=scan.nextInt();
+        return year;
+    }
+    void setyear(int set_year)
+    {
+        year=set_year;
+    }
+    double getfee()
+    {
+        System.out.println("Enter the Fees:");
+        fee=scan.nextDouble();
+        return fee;
+    }
+    void setfee(double set_fee)
+    {
+        fee=set_fee;
+    }
+    public String toString()
+    {
+        return ("\nName: "+name+"\nAddress: "+address+"\nprogram: "+program+"\nYear: "+year+"\nFees: "+fee);
+       
+    }
+}
+class staff extends person
+{
+    double pay;
+    String school;
+    double getpay()
+    {
+        System.out.println("Enter the pay:");
+        pay=scan.nextInt();
+        return pay;
+    }
+    void setpay(double set_pay)
+    {
+        pay=set_pay;
+    }
+    String getschool()
+    {
+        System.out.println("Enter the School:");
+        school=scan.next();
+        return school;
+    }
+    void setschool(String set_sch)
+    {
+        school=set_sch;
+    }
+    public String toString()
+    {
+        return ("\nName: "+name+"\nAddress: "+address+"\nSchool: "+school+"\nPay: "+pay);
+       
+    }
+}
