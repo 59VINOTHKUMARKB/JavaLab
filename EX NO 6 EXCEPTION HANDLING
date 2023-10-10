@@ -1,3 +1,6 @@
+//PROGRAM 1
+
+APARTMENTEXCEPTION.java
 package ApartmentException;
 import java.util.*;
 public class ApartmentException{
@@ -43,3 +46,148 @@ public class ApartmentException{
         return ("Street Address:"+stradd+"\nStreet Apartment Number:"+apartmentno+"\nNo.Of.Bedrroms:"+bedno+"\nRent Amount: $"+rent+"\n");
     }
 }
+
+APARTMENT.java
+public class Apartment extends Exception
+{   public Apartment(String msg)
+ 
+    {
+        super(msg);
+   }
+}
+
+THROWAPARTMENTEXCEPTION.java
+import ApartmentException.ApartmentException;
+import ApartmentException.Apartment;
+import java.util.*;
+public class ThrowApartmentException {
+   
+
+    public static void main(String[] args) {
+        String stradd="";
+        int apartmentno=0;
+        int bedno=0;
+        double rent=0.00;
+        ApartmentException[] apart=new ApartmentException[10];
+        Scanner s=new Scanner(System.in);
+        System.out.println("\t\t\tVK APARTMENTS AND SKYSCRAPERS");
+        System.out.println("Enter the No.of.Apartment Details Available:");
+        int n=s.nextInt();
+       
+        for(int i=1;i<=n;i++)
+        {
+            apart[i]=new ApartmentException(stradd,apartmentno,bedno,rent);
+            System.out.println("Object Created Successfully!");
+            System.out.println("Enter the Details for Aparment "+i+"..");
+            stradd=apart[i].getstradd();
+            boolean errorfound=false;
+            try{
+            apartmentno=apart[i].getapartno();
+            if(apartmentno>100&&apartmentno<999)
+            {
+                System.out.println("NO ERROR FOUND");
+            }
+            else
+            {
+                throw new Apartment(" The Apartment Number Should be 3 Digits Only!");
+            }
+            }catch(Apartment e)
+            {
+                System.out.println("ERROR:"+e.getMessage()+"\n");
+                errorfound=true;
+            }
+            try{
+            bedno=apart[i].getbedno();
+            if(bedno>1&&bedno<4)
+            {
+                System.out.println("NO ERROR FOUND");
+            }
+            else
+            {
+                throw new Apartment(" The Apartment Number Should be Between 1 and 4 Only!");
+            }
+            }
+            catch(Exception e)
+            {
+                System.out.println("ERROR:"+e.getMessage()+"\n");
+                errorfound=true;
+            }
+            try{
+            rent=apart[i].getrent();
+            if(rent>=500&&rent<=2500)
+            {
+                System.out.print("NO ERROR FOUND");
+            }
+            else
+            {
+                throw new Apartment(" The Rent Amount Should be Between $500 and $2500 Only!");
+            }
+            }catch(Exception e)
+            {
+                System.out.println("ERROR:"+e.getMessage()+"\n");
+                errorfound=true;
+            }
+            if(!errorfound)
+            {
+              System.out.println("\n\n"+apart[i]);
+            }
+        }
+    }
+
+
+//PROGRAM 2
+
+import java.util.Scanner;
+
+public class ExceptionProgram {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        try {
+            System.out.print("Enter numerator: ");
+            int numerator = scanner.nextInt();
+            System.out.print("Enter denominator: ");
+            int denominator = scanner.nextInt();
+
+            int result = numerator / denominator;
+            System.out.println("Result: " + result);
+        } catch (ArithmeticException e) {
+            System.out.println("ArithmeticException: " + e.getMessage());
+        }
+        try {
+            System.out.print("The array values are : ");
+            int[] numbers = {1, 2, 3, 4, 5};
+            for(int num : numbers)
+                System.out.print(num+" ");
+            System.out.println("\n");
+            System.out.print("Enter index: ");
+            int index = scanner.nextInt();
+            int value = numbers[index];
+            System.out.println("Value at index " + index + ": " + value);
+        } catch (ArrayIndexOutOfBoundsException e) {
+            System.out.println("ArrayIndexOutOfBoundsException: " + e.getMessage());
+        }
+        try {
+            System.out.print("Enter a number to be parsed : ");
+            String input = scanner.next();
+
+            int number = Integer.parseInt(input);
+            System.out.println("Parsed number: " + number);
+        } catch (NumberFormatException e) {
+            System.out.println("NumberFormatException: " + e.getMessage());
+        }
+        try {
+            System.out.print("Enter a string: ");
+            String input = scanner.next();
+            System.out.print("Enter index: ");
+            int index = scanner.nextInt();
+            char character = input.charAt(index);
+            System.out.println("Character at "+ index + " : " + character);
+        } catch (StringIndexOutOfBoundsException e) {
+            System.out.println("StringIndexOutOfBoundsException: " + e.getMessage());
+        }
+        scanner.close();
+    }
+}
+
+
