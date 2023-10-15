@@ -1,0 +1,98 @@
+//1.Second frequently occured character in a String
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Enter String:");
+        String str = scan.next();
+        char c;
+        char ch[] = str.toCharArray();
+        Map<Character, Integer> map = new HashMap<>();
+        int maxCount = 0; 
+        int secondMaxCount = 0;
+
+        for (int i = 0; i < ch.length; i++) {
+            int count = 0;
+            c = ch[i];
+            for (int j = 0; j < ch.length; j++) {
+                if (ch[j] == c) {
+                    count++;
+                }
+            }
+            map.put(c, count);
+
+            if (count > maxCount) {
+                secondMaxCount = maxCount;
+                maxCount = count;
+            } else if (count > secondMaxCount && count < maxCount) {
+                secondMaxCount = count;
+            }
+        }
+
+        System.out.println("Second most frequently occurring character(s):");
+        for (Map.Entry<Character, Integer> entry : map.entrySet()) {
+            if (entry.getValue() == secondMaxCount) {
+                System.out.println(entry.getKey() + ": " + entry.getValue() + " times");
+            }
+        }
+    }
+}
+
+/*
+Output:1
+Enter String:
+Success
+Second most frequently occurring character(s):
+c: 2 times
+*/
+
+//2.Email validator
+import java.util.Scanner;
+public class Main {
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        System.out.print("Enter your email: ");
+        String email = scan.nextLine().trim();
+
+        if (isValidEmail(email)) {
+            System.out.println("Email address is valid");
+        } else {
+            System.out.println("Email is not valid");
+        }
+
+        scan.close();
+    }
+    public static boolean isValidEmail(String email) {
+        if (email.length() == 0) {
+            return false;
+        }
+        String[] parts = email.split("@");
+        if (parts.length != 2) {
+            return false;
+        }
+        String localPart = parts[0];
+        String domainPart = parts[1];
+        if (localPart.length() == 0 || localPart.charAt(0) == '.' || localPart.charAt(localPart.length() - 1) == '.') {
+            return false;
+        }
+        if (domainPart.length() == 0 || domainPart.charAt(0) == '.' || domainPart.charAt(domainPart.length() - 1) == '.') {
+            return false;
+        }
+        if (!email.matches("^[A-Za-z0-9._-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}$")) {
+            return false;
+        }
+
+        return true;
+    }
+}
+
+/*
+Output:1
+Enter your email: aaabbb.ccc@gmail.com
+Email is valid
+
+Output:2
+Enter your email:aa@bbb@gmail
+Email is not valid
+*/
